@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.8'
 services:
   frontend:
     container_name: frontend
@@ -21,9 +21,26 @@ services:
       - 3000:3000
     volumes:
       - ./api:/code
-    command: bash -c "bundle install && rails server -p 3000 -b '0.0.0.0'"
+    command: bash -c "bundle install && rails db:migrate && rails server -p 3000 -b '0.0.0.0'"
+    env_file: ./docker/db.env
+    depends_on:
+      - database
+    networks: 
+      - project_network
 
-  # db:
+  database:
+    container_name: database
+    image: postgres:13
+    volumes: 
+      - db:/var/lib/postgresql/data
+    env_file: ./docker/db.env
+    networks: 
+      - project_network
+
+networks: 
+  project_network:
+
 
 volumes: 
   node_modules:
+  db:
