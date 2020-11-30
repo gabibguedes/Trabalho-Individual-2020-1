@@ -1,5 +1,7 @@
 version: '3.8'
+
 services:
+
   frontend:
     container_name: frontend
     build: 
@@ -10,7 +12,7 @@ services:
     volumes:
       - ./client:/code
       - node_modules:/code/node_modules
-    command: bash -c "yarn install && yarn dev"
+    command: ['sh', '/scripts/start.sh']
 
   api:
     container_name: api
@@ -21,7 +23,8 @@ services:
       - 3000:3000
     volumes:
       - ./api:/code
-    command: bash -c "bundle install && rails db:migrate && rails server -p 3000 -b '0.0.0.0'"
+      - gems:/usr/local/bundle
+    command: ['sh', '/scripts/start.sh']
     env_file: ./docker/db.env
     depends_on:
       - database
@@ -40,7 +43,7 @@ services:
 networks: 
   project_network:
 
-
 volumes: 
   node_modules:
   db:
+  gems:
