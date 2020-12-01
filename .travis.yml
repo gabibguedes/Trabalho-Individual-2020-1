@@ -20,14 +20,11 @@ before_install:
 
 jobs:
   - stage: build
-  - name: 'Build'
   - script: 
     - docker-compose up --build -d 
 
   - stage: test
-  - name: 'Tests'
   - script: 
-    - soc
-    - docker-compose run frontend /scripts/test.sh
+    - docker-compose run --rm frontend /scripts/test.sh
   - script: 
-    - docker-compose run api /scripts/test.sh
+    - docker-compose run --rm api /scripts/test.sh
