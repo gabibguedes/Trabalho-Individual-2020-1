@@ -18,8 +18,8 @@ jobs:
   - stage: build
   - script: 
     - docker-compose up --build -d 
-    - docker ps
 
   - stage: test
-  - script: docker-compose run --rm frontend yarn run test:unit
-  - script: docker-compose run --rm api bundle exec rails test
+  - script: 
+    - docker-compose run --rm frontend yarn run test:unit
+    - docker-compose run --rm api bundle exec rails test
