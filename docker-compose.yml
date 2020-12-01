@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+
+  frontend:
+    container_name: frontend
+    build: 
+      context: .
+      dockerfile: ./docker/front.Dockerfile
+    ports: 
+      - 8080:8080
+    volumes:
+      - ./client:/code
+      - node_modules:/code/node_modules
+    command: ['sh', '/scripts/start.sh']
+
+  api:
+    container_name: api
+    build: 
+      context: .
+      dockerfile: ./docker/api.Dockerfile
+    ports: 
+      - 3000:3000
+    volumes:
+      - ./api:/code
+      - gems:/usr/local/bundle
+    command: ['sh', '/scripts/start.sh']
+    env_file: ./docker/db.env
+    depends_on:
+      - database
+    networks: 
+      - project_network
+
+  database:
+    container_name: database
+    image: postgres:13
+    volumes: 
+      - db:/var/lib/postgresql/data
+    env_file: ./docker/db.env
+    networks: 
+      - project_network
+
+networks: 
+  project_network:
+
+volumes: 
+  node_modules:
+  db:
+  gems:
