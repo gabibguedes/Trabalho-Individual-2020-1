@@ -3,6 +3,10 @@ language: generic
 services:
   - docker
 
+stages:
+  - build
+  - test
+  
 env:
   DOCKER_COMPOSE_VERSION: 1.27.4
 
@@ -15,15 +19,14 @@ before_install:
   - docker-compose --version
 
 jobs:
-  - stage: 'Build'
+  - stage: build
+  - name: 'Build'
   - script: 
     - docker-compose up --build -d 
 
-  - stage: 'Test Frontend'
-  - language: node_js
+  - stage: test
+  - name: 'Tests'
   - script: 
     - docker-compose run frontend yarn run test:unit
-
-  # - stage: 'Test Backend'
-  # - script: 
-  #   - docker-compose run api bundle exec rails test
+  - script: 
+    - docker-compose run api bundle exec rails test
