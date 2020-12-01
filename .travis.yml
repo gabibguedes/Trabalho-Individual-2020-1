@@ -6,7 +6,7 @@ services:
 stages:
   - build
   - test
-  
+
 env:
   DOCKER_COMPOSE_VERSION: 1.27.4
 
@@ -27,6 +27,7 @@ jobs:
   - stage: test
   - name: 'Tests'
   - script: 
-    - docker-compose run frontend yarn run test:unit
+    - soc
+    - docker-compose run frontend /scripts/test.sh
   - script: 
-    - docker-compose run api bundle exec rails test
+    - docker-compose run api /scripts/test.sh
