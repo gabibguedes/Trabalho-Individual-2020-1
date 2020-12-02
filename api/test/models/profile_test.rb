@@ -34,7 +34,7 @@ class ProfileTest < ActiveSupport::TestCase
 
     before_update_count = Profile.count()
 
-    @valid_profile.update(name: 'matsuda', url: @valid_profile.url)
+    @valid_profile.update(name: 'matsuda', url: 'https://github.com/matz')
 
     assert_equal(old_username, @valid_profile.username)
     assert_equal(old_url, @valid_profile.url)
