@@ -1,5 +1,7 @@
 # Solução do Trabalho Individual de GCES
 
+![build](https://travis-ci.com/gabibguedes/Trabalho-Individual-2020-1.svg?branch=master)
+
 **Aluna:** Gabriela Barrozo Guedes
 **Matricula:** 16/0121612
 
@@ -32,25 +34,25 @@ Para rodar os testes nos ambientes dockerizados, utilize os seguintes comandos:
 **Frontend**:
 
 ```sh
-docker-compose run --rm frontend yarn run test:unit
+docker-compose run --rm  frontend /scripts/test.sh
 ```
 
 **Backend**:
 
 ```sh
-docker-compose run --rm api bundle exec rails test
+docker-compose run --rm  api /scripts/test.sh
 ```
 
 ## Integração Continua
+
+A integração continua do projeto foi feita utilizando o Travis CI, onde foram estabelecidos os estágios de **build** e **test**, que são rodados a cada commit do projeto. Para fazer essas configurações foi criado um arquivo `.travis.yml` na raiz do projeto com as configurações necessárias e foi adicionado o Travis CI ao repositório.
 
 ## Deploy Continuo
 
 ## Referências
 
-- [Docker](https://docs.docker.com/)
 - [Docker Docs - Quickstart: Compose and Rails](https://docs.docker.com/compose/rails/)
 - [Digital Ocean - Conteinerizando um aplicativo Ruby on Rails para desenvolvimento com o Docker Compose](https://www.digitalocean.com/community/tutorials/containerizing-a-ruby-on-rails-application-for-development-with-docker-compose-pt)
-- [SIGE](https://gitlab.com/lappis-unb/projects/SMI/)
-
-
+- [Travis CI - Setting up a CI/CD Process on GitHub with Travis CI](https://blog.travis-ci.com/2019-05-30-setting-up-a-ci-cd-process-on-github)
+- [Travis CI - Using Docker in Builds](https://docs.travis-ci.com/user/docker/)
 
