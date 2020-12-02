@@ -1,6 +1,6 @@
 # Solução do Trabalho Individual de GCES
 
-![build](https://travis-ci.com/gabibguedes/Trabalho-Individual-2020-1.svg?branch=master)
+[![Build Status](https://travis-ci.com/gabibguedes/Trabalho-Individual-2020-1.svg?branch=master)](https://travis-ci.com/gabibguedes/Trabalho-Individual-2020-1) [![Maintainability](https://api.codeclimate.com/v1/badges/6a3289d4132839bf2015/maintainability)](https://codeclimate.com/github/gabibguedes/Trabalho-Individual-2020-1/maintainability)
 
 **Aluna:** Gabriela Barrozo Guedes
 **Matricula:** 16/0121612
@@ -46,6 +46,8 @@ docker-compose run --rm  api /scripts/test.sh
 ## Integração Continua
 
 A integração continua do projeto foi feita utilizando o Travis CI, onde foram estabelecidos os estágios de **build** e **test**, que são rodados a cada commit do projeto. Para fazer essas configurações foi criado um arquivo `.travis.yml` na raiz do projeto com as configurações necessárias e foi adicionado o Travis CI ao repositório.
+
+Para a visualização da qualidade do código, foi utilizado o Code Climate.
 
 ## Deploy Continuo
 
