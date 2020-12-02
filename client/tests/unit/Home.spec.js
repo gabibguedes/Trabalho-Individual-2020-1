@@ -34,18 +34,18 @@ describe('Home.vue', () => {
 
   it('is a vue instance', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
+  }),
+
+  it('should trigger search when button is clicked', () => {
+    const makeSearch = jest.fn()
+    wrapper.vm.makeSearch = makeSearch
+
+    wrapper.vm.searchString = 'asdf'
+
+    wrapper.vm.$nextTick().then(() => {
+      wrapper.find('#home-make-search').trigger('click')
+
+      expect(makeSearch).toHaveBeenCalled()
+    })
   })
-
-  // it('should trigger search when button is clicked', () => {
-  //   const makeSearch = jest.fn()
-  //   wrapper.vm.makeSearch = makeSearch
-
-  //   wrapper.vm.searchString = 'asdf'
-
-  //   wrapper.vm.$nextTick().then(() => {
-  //     wrapper.find('#home-make-search').trigger('click')
-
-  //     expect(makeSearch).toHaveBeenCalled()
-  //   })
-  // })
 })
