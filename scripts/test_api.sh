@@ -2,4 +2,10 @@
 
 bundle install
 
-bundle exec rails test
+export RAILS_ENV=test 
+
+rake db:create 
+rake db:migrate
+rake db:seed
+
+rake test
