@@ -20,6 +20,13 @@ before_install:
 - sudo mv docker-compose /usr/local/bin
 - docker-compose --version
 
+beforescript:
+- chmod 600 deploy && mv deploy ~/.ssh/id_rsa
+
+addons:
+  sshknownhosts:
+  - 67.205.150.225
+
 jobs:
 - stage: build
 - script:
@@ -30,3 +37,10 @@ jobs:
   - docker-compose run --rm frontend /scripts/test.sh
 - script:
   - docker-compose run --rm api /scripts/test.sh
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: ssh deploy@67.205.150.225 'bash -s' < ./scripts/deploy.sh
+  on:
+    branch: deploy
