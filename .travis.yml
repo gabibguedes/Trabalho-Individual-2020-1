@@ -1,30 +1,46 @@
 language: generic
 
 services:
-  - docker
+- docker
 
 stages:
-  - build
-  - test
+- build
+- test
 
 env:
   DOCKER_COMPOSE_VERSION: 1.27.4
 
 before_install:
-  - docker-compose --version
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - docker-compose --version
+- openssl aes-256-cbc -K $encrypted_b0d51b9ff91b_key -iv $encrypted_b0d51b9ff91b_iv -in deploy.enc -out deploy -d
+- docker-compose --version
+- sudo rm /usr/local/bin/docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
+- docker-compose --version
+
+beforescript:
+- chmod 600 deploy && mv deploy ~/.ssh/id_rsa
+
+addons:
+  sshknownhosts:
+  - 67.205.150.225
 
 jobs:
-  - stage: build
-  - script: 
-    - docker-compose up --build -d 
+- stage: build
+- script:
+  - docker-compose up --build -d
 
-  - stage: test
-  - script: 
-    - docker-compose run --rm frontend /scripts/test.sh
-  - script: 
-    - docker-compose run --rm api /scripts/test.sh
+- stage: test
+- script:
+  - docker-compose run --rm frontend /scripts/test.sh
+- script:
+  - docker-compose run --rm api /scripts/test.sh
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: ssh deploy@67.205.150.225 'bash -s' < ./scripts/deploy.sh
+  on:
+    branch: master
