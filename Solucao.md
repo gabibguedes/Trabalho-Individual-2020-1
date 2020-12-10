@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.com/gabibguedes/Trabalho-Individual-2020-1.svg?branch=master)](https://travis-ci.com/gabibguedes/Trabalho-Individual-2020-1) [![Maintainability](https://api.codeclimate.com/v1/badges/6a3289d4132839bf2015/maintainability)](https://codeclimate.com/github/gabibguedes/Trabalho-Individual-2020-1/maintainability)
 
 **Aluna:** Gabriela Barrozo Guedes
+
 **Matricula:** 16/0121612
 
 ## Conteinerização
@@ -51,10 +52,18 @@ Para a visualização da qualidade do código, foi utilizado o Code Climate.
 
 ## Deploy Continuo
 
+O deploy foi feito na Digital Ocean. Para a automação do deploy, foi utilizado o Travis CI, onde a cada update feito na branch `master` o projeto em produção é atualizado.
+
+O projeto pode ser acessado pelas urls:
+
+- Frontend: [`http://67.205.150.225:8080/`](http://67.205.150.225:8080/)
+- Backend: [`http://67.205.150.225:3000/`](http://67.205.150.225:3000/)
+
 ## Referências
 
 - [Docker Docs - Quickstart: Compose and Rails](https://docs.docker.com/compose/rails/)
 - [Digital Ocean - Conteinerizando um aplicativo Ruby on Rails para desenvolvimento com o Docker Compose](https://www.digitalocean.com/community/tutorials/containerizing-a-ruby-on-rails-application-for-development-with-docker-compose-pt)
 - [Travis CI - Setting up a CI/CD Process on GitHub with Travis CI](https://blog.travis-ci.com/2019-05-30-setting-up-a-ci-cd-process-on-github)
 - [Travis CI - Using Docker in Builds](https://docs.travis-ci.com/user/docker/)
-
+- [Travis CI - Script deployment](https://docs.travis-ci.com/user/deployment/script/)
+- [Deploying To DigitalOcean From Travis](https://menubar.io/deploying-to-digitalocean-travis)
