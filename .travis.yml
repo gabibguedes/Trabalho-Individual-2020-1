@@ -43,4 +43,4 @@ deploy:
   provider: script
   script: ssh deploy@67.205.150.225 'bash -s' < ./scripts/deploy.sh
   on:
-    branch: deploy
+    branch: master
