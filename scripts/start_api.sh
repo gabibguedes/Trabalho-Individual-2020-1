@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm /code/tmp/pids/server.pid
+
 bundle install
 
 export RAILS_ENV=development
